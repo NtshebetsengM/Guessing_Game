@@ -10,18 +10,40 @@ namespace Guessing_Game
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("I'm thinking of a number between 0 and 100.");
-            Console.WriteLine("Can you guess what it is?");
-            PlayGame();
-           
-           
+            Console.WriteLine("Welcome to the guessing game!");
+          ChooseDifficulty();
+          
         }
         
-
-        static void PlayGame()
+        static void ChooseDifficulty()
+        {
+            Console.WriteLine("choose your difficulty!: easy, medium or hard");
+            string difficulty = Console.ReadLine()?.ToLower();
+            if (difficulty == "easy")
+            {
+                Console.WriteLine("I'm thinking of a number between 0 and 10");
+                PlayGame(0, 10);
+            }
+            else if (difficulty == "medium")
+            {
+                Console.WriteLine("I'm thinking of a number between 0 and 100");
+                PlayGame(0, 100);
+            }
+            else if (difficulty == "hard")
+            {
+                Console.WriteLine("I'm thinking of a number between 0 and 1000");
+                PlayGame(0, 1000);
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice! Starting with Medium mode.");
+                PlayGame(0, 100);
+            }
+        }
+        static void PlayGame(int min, int max)
         {
             Random random = new Random();
-            int secretNumber = random.Next(0, 101);
+            int secretNumber = random.Next(min, max + 1);
             int guess = 0;
             int attempts = 0;
 
@@ -61,15 +83,16 @@ namespace Guessing_Game
         }
         static void PlayAgain()
         {
-            Console.Write("\nWould you like to play again? (yes or no): ");
+            Console.Write("\nWanna try your luck again? (yes or no): ");
             string input = Console.ReadLine()?.ToLower();
             if(input == "yes" ||input == "y")
             {
-                PlayGame();
+                Console.WriteLine("lets do it!");
+                ChooseDifficulty();
             }
             else
             {
-                Console.WriteLine("\nThanks for playing!");
+                Console.WriteLine("\nNext time!\nThanks for playing!");
             }
         }
     }
