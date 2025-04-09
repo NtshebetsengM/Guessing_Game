@@ -19,25 +19,24 @@ namespace Guessing_Game
         {
             Console.WriteLine("choose your difficulty!: easy, medium or hard");
             string difficulty = Console.ReadLine()?.ToLower();
-            if (difficulty == "easy")
+            switch (difficulty)
             {
-                Console.WriteLine("I'm thinking of a number between 0 and 10");
-                PlayGame(0, 10);
-            }
-            else if (difficulty == "medium")
-            {
-                Console.WriteLine("I'm thinking of a number between 0 and 100");
-                PlayGame(0, 100);
-            }
-            else if (difficulty == "hard")
-            {
-                Console.WriteLine("I'm thinking of a number between 0 and 1000");
-                PlayGame(0, 1000);
-            }
-            else
-            {
-                Console.WriteLine("Invalid choice! Starting with Medium mode.");
-                PlayGame(0, 100);
+                case "easy":
+                    Console.WriteLine("I'm thinking of a number between 0 and 10");
+                    PlayGame(0, 10);
+                    break;
+                case "medium":
+                    Console.WriteLine("I'm thinking of a number between 0 and 100");
+                    PlayGame(0, 100);
+                    break;
+                case "hard":
+                    Console.WriteLine("I'm thinking of a number between 0 and 1000");
+                    PlayGame(0, 1000);
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice! Starting with Medium mode.");
+                    PlayGame(0, 100);
+                    break;
             }
         }
         static void PlayGame(int min, int max)
